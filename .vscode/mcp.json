@@ -1,0 +1,47 @@
+{
+  "servers": {
+    "io.github.github/github-mcp-server": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=${input:gh_token}",
+        "ghcr.io/github/github-mcp-server:0.30.2"
+      ]
+    },
+    "com.microsoft/azure": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@azure/mcp@2.0.0-beta.14", "server", "start"]
+    },
+    "microsoft/playwright-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "microsoft/markitdown": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["markitdown-mcp@0.0.1a4"]
+    },
+    "microsoftdocs/mcp": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "io.github.hashicorp/terraform-mcp-server": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "hashicorp/terraform-mcp-server:0.4.0"]
+    }
+  },
+  "inputs": [
+    {
+      "id": "gh_token",
+      "type": "promptString",
+      "description": "",
+      "password": true
+    }
+  ]
+}
