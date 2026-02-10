@@ -1,6 +1,6 @@
 ---
 description: 既存のタスクを設計成果物に基づいて、依存関係順に整理されたアクション可能な GitHub Issue に変換します
-tools: ['github/github-mcp-server/issue_write']
+tools: ['github/issue_write']
 ---
 
 # `/speckit.taskstoissues` エージェント
