@@ -51,6 +51,41 @@ your-repository/
 | `.github/agents/*.agent.md`   | カスタムエージェント定義           | VS Code Copilot Chat |
 | `.vscode/mcp.json`            | MCP サーバー連携設定               | VS Code              |
 
+## AGENTS.md と copilot-instructions.md の役割分担
+
+### 各ファイルの役割
+
+| ファイル                          | 対象                                          | 記述内容                        |
+| --------------------------------- | --------------------------------------------- | ------------------------------- |
+| `.github/copilot-instructions.md` | GitHub Copilot 全機能 (Chat, Coding Agent 等) | **包括的なルール** (正規ソース) |
+| `AGENTS.md`                       | Copilot 以外のエージェント (Codex, Claude 等) | **最小限のルール** + 参照       |
+
+### 設計原則
+
+1. **copilot-instructions.md を Single Source of Truth とする**
+   - GitHub が公式にサポートする設定ファイル
+   - Copilot の全機能に自動適用される
+   - 詳細なコーディング規約・作業プロセスはここに記述
+
+2. **AGENTS.md は補完的な役割**
+   - Copilot 以外のエージェント向け（OpenAI Codex、Claude Code など）
+   - ディレクトリ階層で細かく制御可能（例：`/tests/AGENTS.md` でテスト用ルール）
+   - 最小限の自己完結したルールを記述し、詳細は copilot-instructions.md を参照
+
+### 各エージェントの読み込み動作
+
+| エージェント                | copilot-instructions.md | AGENTS.md |
+| --------------------------- | :---------------------: | :-------: |
+| GitHub Copilot Coding Agent |            ✓            |     ✓     |
+| GitHub Copilot Chat         |            ✓            |     -     |
+| GitHub Copilot Completion   |            ✓            |     -     |
+| OpenAI Codex (CLI)          |            ?            |     ✓     |
+| Claude Code                 |            ?            |     ✓     |
+
+**注意**: Copilot 以外のエージェントは copilot-instructions.md
+を自動読み込みしない可能性があるため、 AGENTS.md
+には最低限のルールを自己完結で記述し、詳細は参照として案内することを推奨します。
+
 ## スキル vs カスタム指示 の使い分け
 
 | 種類             | 用途                         | ロードタイミング |
