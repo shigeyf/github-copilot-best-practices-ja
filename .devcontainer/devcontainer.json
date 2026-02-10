@@ -19,7 +19,7 @@
       "version": "lts"
     },
     "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.11"
+      "version": "3.12.12"
     },
     "ghcr.io/devcontainers/features/go:1": {
       "version": "latest"
@@ -31,7 +31,7 @@
       "version": "8.0"
     },
     "ghcr.io/devcontainers/features/terraform:1": {
-      "version": "1.9",
+      "version": "1.12",
       "tflint": "latest"
     },
     "ghcr.io/devcontainers/features/azure-cli:1": {
@@ -52,6 +52,8 @@
     "vscode": {
       // "extensions" for this project are specified in here will be installed in Dev Container.
       "extensions": [
+        "bierner.markdown-mermaid",
+        "DavidAnson.vscode-markdownlint",
         "esbenp.prettier-vscode",
         "GitHub.vscode-github-actions",
         "golang.go",
