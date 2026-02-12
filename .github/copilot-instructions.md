@@ -17,6 +17,23 @@ Always respond in Japanese.
 - 技術用語で一般的な英語表記: そのまま使用可能 (例: Git、API、Docker)
 - 外部ライブラリやフレームワークの固有名詞: 原語のまま使用
 
+## 技術スタック固有の指示
+
+ファイルパターンに応じて、以下の instructions ファイルが自動適用されます:
+
+| ファイル                                                | 適用対象                                                   | 説明                               |
+| ------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------- |
+| `instructions/markdown.instructions.md`                 | `**/*.md`                                                  | Markdown ドキュメント標準          |
+| `instructions/nodejs-javascript-vitest.instructions.md` | `**/*.js, **/*.mjs, **/*.cjs, **/*.test.ts, **/*.test.tsx` | Vitest テスト                      |
+| `instructions/python-mcp-server.instructions.md`        | `**/*.py, **/pyproject.toml, **/requirements.txt`          | Python MCP Server ガイドライン     |
+| `instructions/python.instructions.md`                   | `**/*.py`                                                  | Python コーディング規約            |
+| `instructions/reactjs.instructions.md`                  | `**/*.jsx, **/*.tsx, **/*.ts, **/*.css`                    | React 開発標準                     |
+| `instructions/security-and-owasp.instructions.md`       | `*`                                                        | セキュリティベストプラクティス     |
+| `instructions/tailwind-v4-vite.instructions.md`         | `**/vite.config.ts, **/*.css, **/*.tsx"`                   | Tailwind CSS v4 設定               |
+| `instructions/typescript-5-es2022.instructions.md`      | `**/*.ts, **/*.tsx`                                        | TypeScript 5.x ガイドライン        |
+| `instructions/typescript-mcp-server.instructions.md`    | `**/*.ts, **/*.js, **/package.json`                        | TypeScript MCP Server ガイドライン |
+| `instructions/vuejs3.instructions.md`                   | `**/*.vue, **/*.ts, **/*.js, **/*.scss`                    | Vue 3 開発標準                     |
+
 ## Coding Agent 向け指示
 
 ### Git コミットと PR (プルリクエスト)
