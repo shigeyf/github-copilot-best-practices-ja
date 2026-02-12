@@ -23,6 +23,7 @@ Always respond in Japanese.
 
 | ファイル                                                | 適用対象                                                   | 説明                               |
 | ------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------- |
+| `instructions/fastapi.instructions.md`                  | `**/*.py, **/pyproject.toml, **/requirements.txt`          | FastAPI 開発標準                   |
 | `instructions/markdown.instructions.md`                 | `**/*.md`                                                  | Markdown ドキュメント標準          |
 | `instructions/nodejs-javascript-vitest.instructions.md` | `**/*.js, **/*.mjs, **/*.cjs, **/*.test.ts, **/*.test.tsx` | Vitest テスト                      |
 | `instructions/python-mcp-server.instructions.md`        | `**/*.py, **/pyproject.toml, **/requirements.txt`          | Python MCP Server ガイドライン     |
