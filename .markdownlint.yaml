@@ -1,4 +1,22 @@
+# AI（LLM）利用に最適化した Markdown Lint 設定
 default: true
-MD013:
-  code_blocks: false
-  tables: false
+
+# 行の長さ制限を無効化（AI 生成テキストは意味単位で長くなるため）
+MD013: false
+
+# 見出しスタイルの統一（atx スタイル: # を使用）
+MD003:
+  style: atx
+
+# リストマーカーの統一（ダッシュを使用）
+MD004:
+  style: dash
+
+# インライン HTML を許可（<details> など有用な要素のため）
+MD033: false
+
+# 空行の連続を許可（セクション区切りに有効）
+MD012: false
+
+# コードブロックの言語指定を必須にしない
+MD040: false
