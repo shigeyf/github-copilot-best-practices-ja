@@ -17,49 +17,24 @@ Always respond in Japanese.
 - 技術用語で一般的な英語表記: そのまま使用可能 (例: Git、API、Docker)
 - 外部ライブラリやフレームワークの固有名詞: 原語のまま使用
 
-## 技術スタック固有の指示
+### 使用したコンテキストファイルの出力
 
-ファイルパターンに応じて、以下の instructions ファイルが自動適用されます:
-
-| ファイル                                                | 適用対象                                                   | 説明                               |
-| ------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------- |
-| `instructions/fastapi.instructions.md`                  | `**/*.py, **/pyproject.toml, **/requirements.txt`          | FastAPI 開発標準                   |
-| `instructions/markdown.instructions.md`                 | `**/*.md`                                                  | Markdown ドキュメント標準          |
-| `instructions/nodejs-javascript-vitest.instructions.md` | `**/*.js, **/*.mjs, **/*.cjs, **/*.test.ts, **/*.test.tsx` | Vitest テスト                      |
-| `instructions/python-mcp-server.instructions.md`        | `**/*.py, **/pyproject.toml, **/requirements.txt`          | Python MCP Server ガイドライン     |
-| `instructions/python.instructions.md`                   | `**/*.py`                                                  | Python コーディング規約            |
-| `instructions/reactjs.instructions.md`                  | `**/*.jsx, **/*.tsx, **/*.ts, **/*.css`                    | React 開発標準                     |
-| `instructions/security-and-owasp.instructions.md`       | `*`                                                        | セキュリティベストプラクティス     |
-| `instructions/tailwind-v4-vite.instructions.md`         | `**/vite.config.ts, **/*.css, **/*.tsx"`                   | Tailwind CSS v4 設定               |
-| `instructions/typescript-5-es2022.instructions.md`      | `**/*.ts, **/*.tsx`                                        | TypeScript 5.x ガイドライン        |
-| `instructions/typescript-mcp-server.instructions.md`    | `**/*.ts, **/*.js, **/package.json`                        | TypeScript MCP Server ガイドライン |
-| `instructions/vuejs3.instructions.md`                   | `**/*.vue, **/*.ts, **/*.js, **/*.scss`                    | Vue 3 開発標準                     |
+現在の回答を生成するために使用した全てのコンテキストファイル (*.instructions.md ファイル、*.agent.md ファイル、SKILL.md ファイルなどを含む）のパスをリストアップしてください。
+また、`.github/copilot-instructions.md` と `AGENTS.md` のファイルが読み込まれているかどうかを明示してください。
 
 ## Coding Agent 向け指示
 
-### Git コミットと PR (プルリクエスト)
+ユーザーが GitHub Issue を作成した際、ユーザーはその Issue に Coding Agent を割り当てて、様々なタスクを実行するためにエージェントセッションを開始することができます。
+エージェントセッションでは、GitHub Copilot Coding Agent は以下のタスクを実行します:
 
-  <!-- 注意: ブランチ名の命名規則は Copilot Coding Agent の内部システムで自動生成されるため、
-     この指示は現時点では効果がありません (2026年1月確認)。 参考として残しています。 -->
-  <!-- 注意: Draft PR 作業中のタイトルは Copilot Coding Agent の内部システムで自動生成されるため、
-     この指示は作業完了後のタイトルにのみ適用されます (2026年1月確認)。 -->
+- **エージェント作業タスク**: エージェントセッションで作業タスクを実行し、作業ログを記録する
+- **エージェント作業ブランチ**: ユーザーが作成した GitHub Issue の要件に基づいてコードの追加・修正・削除を行うためのエージェント作業ブランチを作成する
+- **エージェント Git コミット**: 作成したエージェント作業ブランチ上でコードのコミット（コードの追加・修正・削除）を行う
+- **エージェントプルリクエスト**: エージェント作業ブランチ上の変更内容をプルリクエスト (PR) として作成する
 
-- **ブランチ名**: PRの作業内容を反映するブランチ名は以下の命名規則に従うこと
-  - 形式: `copilot/issue-<Issue番号>-<短い説明>`
-  - 例: `copilot/issue-123-add-login-feature`
-  - 説明部分はケバブケース (小文字、ハイフン区切り) で記述
-- **PR タイトル**: 必ず日本語で記述し、先頭に `[Copilot]` を付けること
-  - 例: `[Copilot] 機能Aの実装`
-  - Draft PR の場合は `[WIP]` プレフィックスを維持すること
-  - 例: `[WIP] [Copilot] 機能Aの実装`
-- **PR 説明文**: 日本語で記述し、変更内容を明確に説明すること
-  - 変更の目的と理由を含める
-  - 影響範囲を明記する
-- **コミットメッセージ**: 日本語で記述し、先頭に `[Copilot]` を付けること
-  - 例: `[Copilot] READMEを更新`
-  - 変更内容を簡潔かつ明確に記述する
+### エージェント作業タスクのログ
 
-### Copilot タスク作業プロセス
+エージェントセッションで実行する作業タスクの作業ログの規則は以下の通りとする:
 
 - タスク実行時の思考・検討内容は日本語で記述すること
 - 進捗報告やステータス更新は日本語で行うこと
@@ -71,6 +46,62 @@ Always respond in Japanese.
   4. 小さな単位で変更を実施し、都度テストする
   5. 変更後は必ず動作確認を行う
   6. 完了時には変更内容をまとめて報告する
+
+### エージェント作業ブランチ
+
+エージェント作業ブランチの名前付け規則は以下の通りとする:
+
+<!--
+  注意: ブランチ名の命名規則は Copilot Coding Agent の内部システムで自動生成されるため、
+  この指示は現時点では効果がありません (2026年1月確認)。 参考として残しています。
+-->
+
+- **ブランチ名**: エージェントの作業内容を反映するエージェント作業ブランチ名は以下の命名規則に従うこと
+  - 形式: `copilot/issue-<Issue番号>-<短い説明>`
+  - 例: `copilot/issue-123-add-login-feature`
+  - 説明部分はケバブケース (小文字、ハイフン区切り) で記述
+
+### エージェント Git コミット
+
+エージェント Git コミットの命名規則は以下の通りとする：
+
+- **コミットメッセージ**: 日本語で記述し、先頭に `[Copilot]` を付けること
+  - 例: `[Copilot] README.md の更新`
+  - Conventional Commits 1.0.0 形式に従うこと
+    - 例: `[Copilot] feat: ユーザー認証機能の追加`
+    - Conventional Commits の詳細は .github/instructions/conventional-commits.instructions.md を参照すること
+  - 変更内容を簡潔かつ明確に記述すること
+
+### エージェントプルリクエスト (PR)
+
+<!--
+  注意: Draft PR 作業中のタイトルは Copilot Coding Agent の内部システムで自動生成されるため、
+  この指示は作業完了後のタイトルにのみ適用されます (2026年1月確認)。
+-->
+
+- **PR タイトル**: 必ず日本語で記述し、先頭に `[Copilot]` を付けること
+  - 例: `[Copilot] 機能Aの実装`
+  - **PR 説明文**を更新した後、**PR タイトル**が上記の命名規則に従っていることを必ず確認する
+- **PR 説明文**: 日本語で記述し、変更内容を明確に説明すること
+  - 変更の目的と理由を含める
+  - 影響範囲を明記する
+  - 技術用語は適切に日本語に翻訳しながら、コードやパラメータ名は英語のまま保持する。
+
+### タスクの成果物のレビュー
+
+実行したタスクが作成した成果物は、以下の指示とガイドラインに従ってレビューを必ず行うこととする:
+
+- **レビューコメント**: 日本語で記述すること
+  - 指摘内容と改善案を明確に伝える
+  - ポジティブなフィードバックも含める
+  - 技術用語は適切に日本語に翻訳しながら、コードやパラメータ名は英語のまま保持する。
+- **レビュー基準**: 以下の観点でレビューすること
+  - 機能的な正確性
+  - コードの可読性と保守性
+  - コードの品質
+  - テストのカバレッジと品質
+  - セキュリティリスク
+  - パフォーマンスへの影響
 
 ## コード生成向け指示
 
@@ -174,3 +205,21 @@ Always respond in Japanese.
 - **ドキュメント優先**: 複雑な変更の前に設計ドキュメントを作成する
 - **継続的な改善**: コードの品質向上を常に意識する
 - **コミュニケーション**: 不明点や判断に迷う場合は、ユーザーに確認する
+
+## 技術スタック固有の指示
+
+ファイルパターンに応じて、以下の instructions ファイルが自動適用されます:
+
+| ファイル                                                | 適用対象                                                   | 説明                               |
+| ------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------- |
+| `instructions/fastapi.instructions.md`                  | `**/*.py, **/pyproject.toml, **/requirements.txt`          | FastAPI 開発標準                   |
+| `instructions/markdown.instructions.md`                 | `**/*.md`                                                  | Markdown ドキュメント標準          |
+| `instructions/nodejs-javascript-vitest.instructions.md` | `**/*.js, **/*.mjs, **/*.cjs, **/*.test.ts, **/*.test.tsx` | Vitest テスト                      |
+| `instructions/python-mcp-server.instructions.md`        | `**/*.py, **/pyproject.toml, **/requirements.txt`          | Python MCP Server ガイドライン     |
+| `instructions/python.instructions.md`                   | `**/*.py`                                                  | Python コーディング規約            |
+| `instructions/reactjs.instructions.md`                  | `**/*.jsx, **/*.tsx, **/*.ts, **/*.css`                    | React 開発標準                     |
+| `instructions/security-and-owasp.instructions.md`       | `*`                                                        | セキュリティベストプラクティス     |
+| `instructions/tailwind-v4-vite.instructions.md`         | `**/vite.config.ts, **/*.css, **/*.tsx"`                   | Tailwind CSS v4 設定               |
+| `instructions/typescript-5-es2022.instructions.md`      | `**/*.ts, **/*.tsx`                                        | TypeScript 5.x ガイドライン        |
+| `instructions/typescript-mcp-server.instructions.md`    | `**/*.ts, **/*.js, **/package.json`                        | TypeScript MCP Server ガイドライン |
+| `instructions/vuejs3.instructions.md`                   | `**/*.vue, **/*.ts, **/*.js, **/*.scss`                    | Vue 3 開発標準                     |
