@@ -13,7 +13,15 @@ $ARGUMENTS
 
 続行する前に、ユーザー入力を**必ず**確認してください (空でない場合)。
 
-## 処理フロー
+## ルール
+
+**Copilot 既定の指示の適用**:
+
+- `.github/copilot-instructions.md` に記述されたルールを適用すること。
+
+## 概要
+
+処理フローは以下の通りです:
 
 1. リポジトリルートから
 `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks`

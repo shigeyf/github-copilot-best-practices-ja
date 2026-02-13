@@ -21,6 +21,12 @@ $ARGUMENTS
 
 処理を進める前に、ユーザー入力を**必ず**考慮してください（空でない場合）。
 
+## ルール
+
+**Copilot 既定の指示の適用**:
+
+- `.github/copilot-instructions.md` に記述されたルールを適用すること。
+
 ## 概要
 
 1. **セットアップ**: リポジトリルートから `.specify/scripts/bash/check-prerequisites.sh --json`
