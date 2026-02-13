@@ -19,7 +19,7 @@ Always respond in Japanese.
 
 ### 使用したコンテキストファイルの出力
 
-現在の回答を生成するために使用した全てのコンテキストファイル (*.instructions.md ファイル、*.agent.md ファイル、SKILL.md ファイルなどを含む）のパスをリストアップしてください。
+現在の回答を生成するために使用した全てのコンテキストファイル (*.instructions.md ファイル、*.agent.md ファイル、SKILL.md ファイルなどを含む) のパスをリストアップしてください。
 また、`.github/copilot-instructions.md` と `AGENTS.md` のファイルが読み込まれているかどうかを明示してください。
 
 ## Coding Agent 向け指示
