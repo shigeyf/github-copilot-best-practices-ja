@@ -67,6 +67,15 @@ repos:
       - id: black
         name: '[Fmt]  Black (*.py)'
 
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.0
+    hooks:
+      - id: ruff
+        name: '[Lint] Ruff (*.py)'
+        args: [--fix]
+      - id: ruff-format
+        name: '[Fmt]  Ruff format (*.py)'
+
   - repo: https://github.com/PyCQA/flake8
     rev: 7.3.0
     hooks:
