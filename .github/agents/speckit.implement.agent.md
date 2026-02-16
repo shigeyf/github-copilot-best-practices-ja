@@ -18,14 +18,11 @@ $ARGUMENTS
 
 - `.github/copilot-instructions.md` に記述されたルールを適用すること。
 
-## 概要
+## 実行ステップ
 
-1. リポジトリルートから
-`.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks`
-を実行し、FEATURE_DIR と AVAILABLE_DOCS リストを解析します。
-すべてのパスは絶対パスである必要があります。
-引数内のシングルクォート (例: "I'm Groot")には、エスケープ構文を使用してください:
-例 'I'\''m Groot' (または可能であればダブルクォートを使用: "I'm Groot")。
+以下の実行ステップに従ってください:
+
+1. リポジトリルートから `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` を実行し、FEATURE_DIR と AVAILABLE_DOCS リストを解析します。すべてのパスは絶対パスである必要があります。引数内のシングルクォート (例: "I'm Groot")には、エスケープ構文を使用してください: 例 'I'\''m Groot' (または可能であればダブルクォートを使用: "I'm Groot")。
 
 2. **チェックリストのステータス確認** (FEATURE_DIR/checklists/ が存在する場合):
    - checklists/ ディレクトリ内のすべてのチェックリストファイルをスキャン
@@ -88,36 +85,27 @@ $ARGUMENTS
    **無視ファイルが存在しない場合**: 検出された技術用の完全なパターンセットで作成
 
    **技術別の一般的なパターン** (`plan.md` の技術スタックから):
-   - **Node.js/JavaScript/TypeScript**:
-   `node_modules/`, `dist/`, `build/`, `*.log`, `.env*`
+   - **Node.js/JavaScript/TypeScript**: `node_modules/`, `dist/`, `build/`, `*.log`, `.env*`
    - **Python**: `__pycache__/`, `*.pyc`, `.venv/`, `venv/`, `dist/`, `*.egg-info/`
    - **Java**: `target/`, `*.class`, `*.jar`, `.gradle/`, `build/`
    - **C#/.NET**: `bin/`, `obj/`, `*.user`, `*.suo`, `packages/`
    - **Go**: `*.exe`, `*.test`, `vendor/`, `*.out`
    - **Ruby**: `.bundle/`, `log/`, `tmp/`, `*.gem`, `vendor/bundle/`
    - **PHP**: `vendor/`, `*.log`, `*.cache`, `*.env`
-   - **Rust**: `target/`, `debug/`, `release/`, `*.rs.bk`, `*.rlib`,
-    `*.prof*`, `.idea/`, `*.log`, `.env*`
-   - **Kotlin**: `build/`, `out/`, `.gradle/`, `.idea/`, `*.class`,
-    `*.jar`, `*.iml`, `*.log`, `.env*`
-   - **C++**: `build/`, `bin/`, `obj/`, `out/`, `*.o`, `*.so`, `*.a`,
-    `*.exe`, `*.dll`, `.idea/`, `*.log`, `.env*`
-   - **C**: `build/`, `bin/`, `obj/`, `out/`, `*.o`, `*.a`, `*.so`,
-    `*.exe`, `Makefile`, `config.log`, `.idea/`, `*.log`, `.env*`
+   - **Rust**: `target/`, `debug/`, `release/`, `*.rs.bk`, `*.rlib`, `*.prof*`, `.idea/`, `*.log`, `.env*`
+   - **Kotlin**: `build/`, `out/`, `.gradle/`, `.idea/`, `*.class`, `*.jar`, `*.iml`, `*.log`, `.env*`
+   - **C++**: `build/`, `bin/`, `obj/`, `out/`, `*.o`, `*.so`, `*.a`, `*.exe`, `*.dll`, `.idea/`, `*.log`, `.env*`
+   - **C**: `build/`, `bin/`, `obj/`, `out/`, `*.o`, `*.a`, `*.so`, `*.exe`, `Makefile`, `config.log`, `.idea/`, `*.log`, `.env*`
    - **Swift**: `.build/`, `DerivedData/`, `*.swiftpm/`, `Packages/`
-   - **R**: `.Rproj.user/`, `.Rhistory`, `.RData`, `.Ruserdata`,
-    `*.Rproj`, `packrat/`, `renv/`
+   - **R**: `.Rproj.user/`, `.Rhistory`, `.RData`, `.Ruserdata`, `*.Rproj`, `packrat/`, `renv/`
    - **共通**: `.DS_Store`, `Thumbs.db`, `*.tmp`, `*.swp`, `.vscode/`, `.idea/`
 
    **ツール固有のパターン**:
-   - **Docker**: `node_modules/`, `.git/`, `Dockerfile*`,
-    `.dockerignore`, `*.log*`, `.env*`, `coverage/`
+   - **Docker**: `node_modules/`, `.git/`, `Dockerfile*`, `.dockerignore`, `*.log*`, `.env*`, `coverage/`
    - **ESLint**: `node_modules/`, `dist/`, `build/`, `coverage/`, `*.min.js`
-   - **Prettier**: `node_modules/`, `dist/`, `build/`, `coverage/`,
-    `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`
+   - **Prettier**: `node_modules/`, `dist/`, `build/`, `coverage/`, `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`
    - **Terraform**: `.terraform/`, `*.tfstate*`, `*.tfvars`, `.terraform.lock.hcl`
-   - **Kubernetes/k8s**: `*.secret.yaml`, `secrets/`, `.kube/`,
-    `kubeconfig*`, `*.key`, `*.crt`
+   - **Kubernetes/k8s**: `*.secret.yaml`, `secrets/`, `.kube/`, `kubeconfig*`, `*.key`, `*.crt`
 
 5. `tasks.md` の構造を解析し、以下を抽出:
    - **タスクフェーズ**: Setup、Tests、Core、Integration、Polish
@@ -154,5 +142,4 @@ $ARGUMENTS
    - 実装が技術計画に従っていることを確認
    - 完了した作業の要約とともに最終ステータスを報告
 
-注意: このコマンドは `tasks.md` に完全なタスク分解が存在することを前提としています。
-タスクが不完全または欠落している場合は、まず `/speckit.tasks` を実行してタスクリストを再生成することを提案してください。
+注意: このコマンドは `tasks.md` に完全なタスク分解が存在することを前提としています。タスクが不完全または欠落している場合は、まず `/speckit.tasks` を実行してタスクリストを再生成することを提案してください。
