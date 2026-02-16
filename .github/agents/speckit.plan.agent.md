@@ -26,15 +26,13 @@ $ARGUMENTS
 
 - `.github/copilot-instructions.md` に記述されたルールを適用すること。
 
-## 概要
+## 実行ステップ
 
-1. **セットアップ**: リポジトリルートから `.specify/scripts/bash/setup-plan.sh --json` を実行し、
-JSON を解析して FEATURE_SPEC、IMPL_PLAN、SPECS_DIR、BRANCH を取得します。
-'I'm Groot' のような引数内のシングルクォートには、エスケープ構文を使用します:
-例 'I'\''m Groot' (または可能であればダブルクォートを使用: "I'm Groot")。
+以下の実行ステップに従ってください:
 
-2. **コンテキストの読み込み**: FEATURE_SPEC と `.specify/memory/constitution.md` を読み込みます。
-IMPL_PLAN テンプレートを読み込みます (既にコピー済み)。
+1. **セットアップ**: リポジトリルートから `.specify/scripts/bash/setup-plan.sh --json` を実行し、JSON を解析して FEATURE_SPEC、IMPL_PLAN、SPECS_DIR、BRANCH を取得します。'I'm Groot' のような引数内のシングルクォートには、エスケープ構文を使用します:　例 'I'\''m Groot' (または可能であればダブルクォートを使用: "I'm Groot")。
+
+2. **コンテキストの読み込み**: FEATURE_SPEC と `.specify/memory/constitution.md` を読み込みます。IMPL_PLAN テンプレートを読み込みます (既にコピー済み)。
 
 3. **計画ワークフローの実行**: IMPL_PLAN テンプレートの構造に従って:
    - 技術コンテキストを記入 (不明点は「要確認」としてマーク)
